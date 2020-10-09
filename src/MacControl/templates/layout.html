@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Control Mac!</title>
+    <link rel="stylesheet" href="../static/css/bulma.min.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script src="../static/js/FA_js_all.js"></script>
+    <script src="../static/js/jquery-3.3.1.js"></script>
+    <script src="../static/js/socket.io.js"></script>
+
+</head>
+<body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('connect', function(){
+            socket.send('User has connected!')
+        });
+
+        socket.on('message', function(msg){
+            $("#VolVar").html(msg);
+            console.log('Volume: ' + msg);
+        });
+
+        $('#VolDown').on('click', function () {
+            socket.send('VolDown');
+        });
+
+        $('#VolUp').on('click', function () {
+            socket.send('VolUp');
+        });
+
+        $('#BrDown').on('click', function () {
+            socket.send('BrDown');
+        });
+
+        $('#BrUp').on('click', function () {
+            socket.send('BrUp');
+        });
+
+        $('#Back').on('click', function () {
+            socket.send('Back');
+        });
+
+        $('#Next').on('click', function () {
+            socket.send('Next');
+        });
+
+        $('#PP').on('click', function () {
+            socket.send('PP');
+        });
+
+        $('#Sleep').on('click', function () {
+            $("html").removeClass("is-clipped");
+            $(this).parent().removeClass("is-active");
+            socket.send('Sleep');
+        });
+    });
+</script>
+        {% include "header.html" %}
+        {% block content %}{% endblock %}
+        {% include "footer.html" %}
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="section">
+    <container class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="columns is-mobile">
+
+                    <div class="column is-5">
+                       <strong><p class="my-1 is-size-5">Volume</p></strong>
+                    </div>
+                    <div class="column is-3">
+                        <p id="VolVar" class="my-1 is-size-5">{{ volume }}</p>
+                    </div>
+                    <div class="column is-2">
+                        <button id="VolDown" class="button is-medium is-primary">
+                            <span class="icon is-medium">
+                              <i class="fas fa-volume-down"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="column is-2">
+                        <button id="VolUp" class="button is-medium is-primary">
+                            <span class="icon is-medium">
+                              <i class="fas fa-volume-up"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="columns is-mobile">
+
+                    <div class="column is-5">
+                        <strong><p class="my-1 is-size-5">Brightness</p></strong>
+                    </div>
+                    <div class="column is-3">
+                    </div>
+                    <div class="column is-2">
+                        <button id="BrDown" class="button is-medium is-primary">
+                            <span class="icon is-medium">
+                              <i class="far fa-circle"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="column is-2">
+                        <button id="BrUp" class="button is-medium is-primary">
+                            <span class="icon is-medium">
+                              <i class="fas fa-circle"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="columns is-mobile">
+
+                    <div class="column is-5">
+                        <strong><p class="my-1 is-size-5">Back/Next</p></strong>
+                    </div>
+                    <div class="column is-3">
+                    </div>
+                    <div class="column is-2">
+                        <button id="Back" class="button is-medium is-primary">
+                            <span class="icon is-medium">
+                              <i class="fas fa-step-backward"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="column is-2">
+                        <button id="Next" class="button is-medium is-primary">
+                            <span class="icon is-medium">
+                              <i class="fas fa-step-forward"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="columns is-mobile">
+
+                    <div class="column is-5">
+                        <strong><p class="my-1 is-size-5">Play/Pause</p></strong>
+                    </div>
+                    <div class="column is-3">
+                    </div>
+                    <div class="column is-2">
+                    </div>
+                    <div class="column is-2">
+                        <button id="PP" class="button is-medium is-primary">
+                            <span class="icon is-medium">
+                              <i class="fas fa-play"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="columns is-mobile">
+
+{#                    <div class="column is-4">#}
+{##}
+{#                    </div>#}
+                    <div class="column is-8">
+                    </div>
+                    <div class="column is-4">
+                        <button class="button modal-button is-primary" data-target = "#modal">
+                            <span class="icon">
+                              <i class="fas fa-moon"></i>
+                            </span>
+                            <span>Sleep</span>
+                        </button>
+                        <div id = "modal" class = "modal">
+                            <div class = "modal-background"></div>
+                            <div class = "modal-content">
+                                <div class = "box">
+                                    <p><strong>Are you sure you want to sleep?</strong></p>
+                                    <button id="Sleep" class="button is-primary">Yes</button>
+                                </div>
+                            </div>
+                            <button class = "modal-close is-large" aria-label = "close"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </container>
+</section>
+<script>
+$(".modal-button").click(function() {
+    var target = $(this).data("target");
+    $("html").addClass("is-clipped");
+    $(target).addClass("is-active");
+});
+
+$(".modal-close").click(function() {
+    $("html").removeClass("is-clipped");
+    $(this).parent().removeClass("is-active");
+});
+</script>
+{% endblock content %}
