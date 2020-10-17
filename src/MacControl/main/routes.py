@@ -7,3 +7,8 @@ from ..utilities import get_volume
 def home():
 	volume = get_volume()
 	return render_template('index.html', volume=volume)
+
+
+@main.route('/options')
+def options():
+	return render_template('options.html')
