@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Web Control Mac!</title>
-    <link rel="stylesheet" href="../static/css/bulma.min.css">
+    <link rel="stylesheet" href="../static/css/mystyles.css">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <script src="../static/js/FA_js_all.js"></script>
     <script src="../static/js/jquery-3.3.1.js"></script>
@@ -57,6 +57,14 @@
             $("html").removeClass("is-clipped");
             $(this).parent().removeClass("is-active");
             socket.send('Sleep');
+        });
+
+        $("#switchWeb").on('click', function() {
+            if ($("#switchWeb").prop("checked")) {
+                socket.send('WebOff');
+            } else {
+                socket.send('WebOn');
+            }
         });
     });
 </script>

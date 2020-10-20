@@ -1,3 +1,5 @@
+import json
+
 from subprocess import run
 from pynput.keyboard import Key, Controller, KeyCode
 
@@ -51,3 +53,14 @@ def vol_change(direction):
 
 def sleep():
 	run(['pmset displaysleepnow'], shell=True)
+
+
+def load_settings():
+	with open('settings.json', 'o') as file:
+		settings = file.readline()
+	return settings.json()
+
+
+def save_settings(data):
+	with open('settings.json', 'w') as file:
+		file.write(json.dumps(data))
