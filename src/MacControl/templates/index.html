@@ -4,8 +4,8 @@
     <container class="container">
         <div class="columns">
             <div class="column">
+                {% if web == True %}
                 <div class="columns is-mobile">
-
                     <div class="column is-5">
                        <strong><p class="my-1 is-size-5">Volume</p></strong>
                     </div>
@@ -95,20 +95,22 @@
                     </div>
                 </div>
             </div>
+            {% else %}
+                <div class="notification is-primary">
+                    <h2 class="subtitle is-6">
+                        Web control turned off.
+                    </h2>
+                </div>
+            {% endif %}
             <div class="column">
                 <div class="columns is-mobile">
-
-{#                    <div class="column is-4">#}
-{##}
-{#                    </div>#}
                     <div class="column is-8">
                     </div>
-                    <div class="column is-4">
-                        <button class="button modal-button is-primary" data-target = "#modal">
+                    <div class="column is-2">
+                        <button class="button modal-button is-medium is-primary" data-target = "#modal">
                             <span class="icon">
                               <i class="fas fa-moon"></i>
                             </span>
-                            <span>Sleep</span>
                         </button>
                         <div id = "modal" class = "modal">
                             <div class = "modal-background"></div>
@@ -120,6 +122,13 @@
                             </div>
                             <button class = "modal-close is-large" aria-label = "close"></button>
                         </div>
+                    </div>
+                    <div class="column is-2">
+                        <a href="{{ url_for('main.options') }}"><button id="OP" class="button is-medium is-primary">
+                            <span class="icon is-medium">
+                              <i class="fas fa-cogs"></i>
+                            </span>
+                        </button></a>
                     </div>
                 </div>
             </div>
