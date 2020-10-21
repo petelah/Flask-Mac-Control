@@ -10,24 +10,27 @@
     </container>
 </section>
 <section class="section">
-    <container class="container">
+    <container class="container is-justify-content-center">
         <div class="columns is-mobile">
             <div class="column">
                 <div class="field">
-                  <input id="switchWeb" type="checkbox" name="switchWeb" class="switch is-rtl" checked="checked">
+                  <input id="switchWeb" type="checkbox" name="switchWeb" class="switch is-rtl" {{ web }}>
                   <label for="switchWeb">Web</label>
                 </div>
             </div>
             <div class="column">
                 <div class="field">
-                  <input id="switchAPI" type="checkbox" name="switchAPI" class="switch is-rtl" checked="checked">
+                  <input id="switchAPI" type="checkbox" name="switchAPI" class="switch is-rtl" {{ api }}>
                   <label for="switchAPI">API</label>
                 </div>
             </div>
         </div>
+        <a href="{{ url_for('main.home') }}"><button class="button is-small is-primary">
+            <span class="icon is-small">
+              <i class="fas fa-home"></i>
+            </span>
+            <span>Home</span>
+        </button></a>
     </container>
 </section>
 {% endblock content %}
-
-
-

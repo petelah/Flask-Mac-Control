@@ -61,9 +61,17 @@
 
         $("#switchWeb").on('click', function() {
             if ($("#switchWeb").prop("checked")) {
-                socket.send('WebOff');
-            } else {
                 socket.send('WebOn');
+            } else {
+                socket.send('WebOff');
+            }
+        });
+
+        $("#switchAPI").on('click', function() {
+            if ($("#switchAPI").prop("checked")) {
+                socket.send('APIOn');
+            } else {
+                socket.send('APIOff');
             }
         });
     });

@@ -47,7 +47,7 @@ def vol_change(direction):
 	elif direction == "down":
 		utfvolume = run(["osascript -e 'output volume of (get volume settings)'"], shell=True, capture_output=True)
 		volume = int(utfvolume.stdout.decode('utf-8'))
-		volume -=5
+		volume -= 5
 		run([f"osascript -e 'set volume output volume {volume}'"], shell=True)
 
 
@@ -56,11 +56,11 @@ def sleep():
 
 
 def load_settings():
-	with open('settings.json', 'o') as file:
+	with open('MacControl/utilities/settings.json', 'r') as file:
 		settings = file.readline()
-	return settings.json()
+	return json.loads(settings)
 
 
 def save_settings(data):
-	with open('settings.json', 'w') as file:
+	with open('MacControl/utilities/settings.json', 'w') as file:
 		file.write(json.dumps(data))

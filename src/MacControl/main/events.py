@@ -1,4 +1,4 @@
-from MacControl.utilities.utils import get_volume, volume_up, volume_down, brightness_up, brightness_down, play_pause, sleep
+from MacControl.utilities.utils import get_volume, volume_up, volume_down, brightness_up, brightness_down, play_pause, sleep, load_settings, save_settings
 from flask_socketio import send
 from .. import socketio
 
@@ -28,3 +28,19 @@ def handleMessage(msg):
 		play_pause()
 	elif msg == "Sleep":
 		sleep()
+	elif msg == "WebOn":
+		settings = load_settings()
+		settings['WEB'] = True
+		save_settings(settings)
+	elif msg == "WebOff":
+		settings = load_settings()
+		settings['WEB'] = False
+		save_settings(settings)
+	elif msg == "APIOn":
+		settings = load_settings()
+		settings['API'] = True
+		save_settings(settings)
+	elif msg == "APIOff":
+		settings = load_settings()
+		settings['API'] = False
+		save_settings(settings)
