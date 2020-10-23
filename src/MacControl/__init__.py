@@ -10,6 +10,8 @@ def create_app(debug=False):
 
 	from MacControl.main import main
 	app.register_blueprint(main)
+	from MacControl.api import api
+	app.register_blueprint(api)
 
 	socketio.init_app(app)
 
