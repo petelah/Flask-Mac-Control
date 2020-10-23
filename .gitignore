@@ -5,3 +5,13 @@ pyvenv.cfg
 .idea
 .DS_Store
 .git-bak
+.gitignore
+src/__pycache__
+src/MacControl/__pycache__
+src/MacControl/main/__pycache__
+src/MacControl/utilities/__pycache__
+src/MacControl/static/bulma
+src/MacControl/static/bulma-switch
+src/MacControl/static/sass
+src/MacControl/static/css
+src/MacControl/api/__pycache__

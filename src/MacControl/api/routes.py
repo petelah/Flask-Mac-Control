@@ -26,6 +26,7 @@ def api_commands():
 				volume_up()
 				return jsonify({"vol": volume}), 200
 			elif id == 'VolDwn':
+				volume_down()
 				return jsonify({"vol": volume}), 200
 			elif id == 'BrUp':
 				brightness_up()
