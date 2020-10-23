@@ -1,47 +1,42 @@
 from flask import request, jsonify, abort
 from . import api
-from ..utilities import get_volume, load_settings
+from ..utilities import get_volume, volume_up, volume_down, brightness_up, brightness_down, play_pause, sleep, load_settings, save_settings
 
-books = [
-	{'id': 0,
-	 'title': 'A Fire Upon the Deep',
-	 'author': 'Vernor Vinge',
-	 'first_sentence': 'The coldsleep itself was dreamless.',
-	 'year_published': '1992'},
-	{'id': 1,
-	 'title': 'The Ones Who Walk Away From Omelas',
-	 'author': 'Ursula K. Le Guin',
-	 'first_sentence': 'With a clamor of bells that set the swallows soaring, the Festival of Summer came to the city Omelas, bright-towered by the sea.',
-	 'published': '1973'},
-	{'id': 2,
-	 'title': 'Dhalgren',
-	 'author': 'Samuel R. Delany',
-	 'first_sentence': 'to wound the autumnal city.',
-	 'published': '1975'}
-]
+
+def check_auth():
+	auth = load_settings()
+	if auth['API']:
+		return True
+	else:
+		return False
 
 
 @api.route('/api', methods=['GET'])
 def api_home():
-	volume = get_volume()
-	settings = load_settings()
-	web = settings['WEB']
-	return f"<h1>API HOME {volume}</h1>"
+	return "<h1>API HOME</h1>"
 
 
 @api.route('/api/controller', methods=['GET'])
 def api_commands():
-	if 'id' in request.args:
-		id = request.args['id']
-		if id == 'VolUp':
-			pass
-		elif id == 'VolDwn':
-			pass
-		elif id == 'BrUp':
-			pass
-		elif id == 'BrDwn':
-			pass
-		elif id == 'PP':
-			pass
-		else:
-			abort(404, description="Resource not found")
+	volume = get_volume()
+	if check_auth():
+		if 'id' in request.args:
+			id = request.args['id']
+			if id == 'VolUp':
+				volume_up()
+				return jsonify({"vol": volume}), 200
+			elif id == 'VolDwn':
+				return jsonify({"vol": volume}), 200
+			elif id == 'BrUp':
+				brightness_up()
+				return 200
+			elif id == 'BrDwn':
+				brightness_down()
+				return 200
+			elif id == 'PP':
+				play_pause()
+				return 200
+			else:
+				abort(404, description="Resource not found")
+	else:
+		abort(403, description="No Authorization")
